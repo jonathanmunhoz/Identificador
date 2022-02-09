@@ -20,6 +20,10 @@ Criar um banco de dados com as informações necessárias, ou utilizar o IP de u
 
 Desativar configurações de segurança do seu email do Gmail.
 _______________________________________________________________________________________________________________________________
+Database - Tabela Banco de Dados.
+
+<a href="https://postimages.org/" target="_blank"><img src="https://i.postimg.cc/hPZ3v87F/bd2.png" alt="bd2"/></a><br/><br/>
+_______________________________________________________________________________________________________________________________
 Desenvolvimento do Projeto:
 
 De início, fazemos a conexão com o banco de dados, para que os dados desejados, inseridos pelo usuário, sejam salvos.
