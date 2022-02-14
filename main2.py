@@ -1,12 +1,6 @@
 from imap_tools import MailBox, AND, OR
 import mysql.connector
 
-dados_conexao = (
-    "Driver={SQL Server};"
-    "Server=localhost;"
-    "Database=db_campo;"
-)
-
 con = mysql.connector.connect(host='localhost', database='db_campo', user='root', password='root')
 if con.is_connected():
     db_info = con.get_server_info()
@@ -14,7 +8,13 @@ if con.is_connected():
     cursor = con.cursor()
     cursor.execute("select database();")
     linha = cursor.fetchone()
-    print("Conectado ao banco de dados ", linha, "\n")
+    print("Conectado ao banco de dados ", linha)
+
+print("__________________________________________________________")
+print("Observações:")
+print("1) Para garantir o funcionamento do software, é necessário desativar a segurança do seu E-mail.")
+print("2) Textos longos não serão armazenados em nosso banco de dados.")
+print("__________________________________________________________")
 
 # pegar emails de um remetente para um destinatário
 username = input("Digite seu E-mail: ")
@@ -25,7 +25,7 @@ print("\n______________________________________")
 meu_email = MailBox('imap.gmail.com').login(username, password)
 
 # criterios: https://github.com/ikvk/imap_tools#search-criteria
-lista_emails = meu_email.fetch(OR(subject="DevOps", text="DevOps"))
+lista_emails = meu_email.fetch(OR(subject=input("Buscar assunto: " ), text=input("Buscar texto: ")))
 for email in lista_emails:
     print("Remetente: ", email.from_)
     print("Assunto: ", email.subject)
@@ -36,3 +36,5 @@ for email in lista_emails:
     con.commit()
 
 print("\nAcima estão todos os e-mails localizados com a palavra-chave.")
+
+input("\nDigite qualquer tecla para encerrar o sistema e de um enter: ")
